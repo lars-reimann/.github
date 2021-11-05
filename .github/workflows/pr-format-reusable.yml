@@ -7,7 +7,7 @@ jobs:
   check-title:
     runs-on: ubuntu-latest
     concurrency:
-      group: ${{ github.head_ref }}__pr-format-reusable__check-title
+      group: ${{ github.ref }}__pr-format-reusable__check-title
       cancel-in-progress: true
 
     steps:

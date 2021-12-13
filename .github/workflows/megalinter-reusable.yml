@@ -2,6 +2,9 @@ name: Run MegaLinter (Reusable)
 
 on:
   workflow_call:
+    secrets:
+      PAT:
+        required: true
 
 env:
   APPLY_FIXES: all

@@ -5,7 +5,7 @@ on:
     inputs:
       flavor:
         description: 'Which flavor of MegaLinter to use (all, java, javascript, ...)'
-        default: 'all'
+        default: all
         required: false
         type: string
     secrets:

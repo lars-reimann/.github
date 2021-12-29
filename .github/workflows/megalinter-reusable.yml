@@ -36,7 +36,7 @@ jobs:
       # MegaLinter
       - name: MegaLinter
         id: ml
-        uses: megalinter/megalinter/flavors/${{ inputs.flavor }}@v5.4.0
+        uses: megalinter/megalinter/flavors/all@v5.4.0
         env:
           DISABLE: COPYPASTE,SPELL
           FILTER_REGEX_EXCLUDE: (\.github/workflows/)

@@ -8,6 +8,6 @@ Closes #[issue_no].
 
 <!-- If your PR includes visual changes, screenshots from before and after your change must be included. -->
 
-### Testing instructions
+### Testing Instructions
 
 <!-- Detail how this PR should be tested. Try to list important items that need checking, either directly changed by this PR or that could be affected by it. -->

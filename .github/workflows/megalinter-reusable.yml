@@ -2,12 +2,6 @@ name: Run MegaLinter (Reusable)
 
 on:
   workflow_call:
-    inputs:
-      flavor:
-        description: 'Which flavor of MegaLinter to use (all, java, javascript, ...)'
-        default: 'all'
-        required: false
-        type: string
     secrets:
       PAT:
         required: true
@@ -38,10 +32,7 @@ jobs:
         id: ml
         uses: megalinter/megalinter@v5.13.0
         env:
-          DISABLE: COPYPASTE,SPELL
-          FILTER_REGEX_EXCLUDE: (\.github/workflows/)
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          VALIDATE_ALL_CODEBASE: false
 
       # Upload MegaLinter artifacts
       - name: Archive production artifacts

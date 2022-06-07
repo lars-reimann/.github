@@ -1,10 +1,8 @@
 # See all available variables at https://megalinter.github.io/configuration/ and in linters documentation.
 
 # General Config
-APPLY_FIXES: all
 DEFAULT_BRANCH: main
 FILEIO_REPORTER: false
-FILTER_REGEX_EXCLUDE: (\.github/workflows/)
 IGNORE_GITIGNORED_FILES: true
 PRINT_ALPACA: false
 SHOW_ELAPSED_TIME: true

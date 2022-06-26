@@ -17,6 +17,14 @@ TYPESCRIPT_DEFAULT_STYLE: prettier
 TYPESCRIPT_PRETTIER_FILE_EXTENSIONS:
   - .ts
   - .tsx
+# Workaround to also run prettier on other supported file types
+JSON_PRETTIER_FILE_EXTENSIONS:
+  - .json
+  - .css
+  - .scss
+  - .htm
+  - .html
+  - .md
 
 # Commands
 PRE_COMMANDS:
@@ -69,7 +77,7 @@ ENABLE_LINTERS:
   - MARKDOWN_MARKDOWNLINT
   - MARKDOWN_REMARK_LINT
   - MARKDOWN_MARKDOWN_LINK_CHECK
-  - MARKDOWN_MARKDOWN_TABLE_FORMATTER
+  # - MARKDOWN_MARKDOWN_TABLE_FORMATTER
   - OPENAPI_SPECTRAL
   #  - PERL_PERLCRITIC
   #  - PHP_BUILTIN

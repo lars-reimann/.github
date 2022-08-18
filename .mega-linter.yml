@@ -26,11 +26,6 @@ JSON_PRETTIER_FILE_EXTENSIONS:
   - .html
   - .md
 
-# Commands
-PRE_COMMANDS:
-  - command: npm install /github/workspace --install-links
-    cwd: workspace
-
 # Linters
 ENABLE_LINTERS:
   - ACTION_ACTIONLINT # GitHub actions

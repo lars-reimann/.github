@@ -27,12 +27,6 @@ jobs:
           token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
 
-      # Cache MegaLinter image
-      - name: Cache Docker images.
-        uses: ScribeMD/docker-cache@0.2.6
-        with:
-          key: docker-${{ runner.os }}-${{ hashFiles('.github/workflows/megalinter-reusable.yml') }}
-
       # MegaLinter
       - name: MegaLinter
         id: ml

@@ -20,18 +20,18 @@ jobs:
       cancel-in-progress: true
 
     steps:
-      # Cache MegaLinter image
-      - name: Cache Docker images
-        uses: ScribeMD/docker-cache@0.2.6
-        with:
-          key: docker-${{ runner.os }}-${{ hashFiles('.github/workflows/megalinter-reusable.yml') }}
-
       # Git Checkout
       - name: Checkout Code
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}
           fetch-depth: 0
+
+      # Cache MegaLinter image
+      - name: Cache Docker images.
+        uses: ScribeMD/docker-cache@0.2.6
+        with:
+          key: docker-${{ runner.os }}-${{ hashFiles('.github/workflows/megalinter-reusable.yml') }}
 
       # MegaLinter
       - name: MegaLinter

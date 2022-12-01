@@ -30,7 +30,7 @@ jobs:
       # MegaLinter
       - name: MegaLinter
         id: ml
-        uses: oxsecurity/megalinter@v6.13.0
+        uses: oxsecurity/megalinter@v6.15.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 

@@ -1,0 +1,48 @@
+name: Build Poetry Project (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+        python-version:
+            description: 'Python version to use'
+            required: true
+            type: string
+        module-name:
+            description: 'Name of the module to build'
+            required: true
+            type: string
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python ${{ inputs.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ inputs.python-version }}
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1.3.3
+        with:
+          virtualenvs-in-project: true
+
+      - name: Load cached venv
+        id: cached-poetry-dependencies
+        uses: actions/cache@v3.2.3
+        with:
+          path: .venv
+          key: venv-${{ runner.os }}-${{ hashFiles('**/poetry.lock') }}
+
+      - name: Install dependencies
+        if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
+        run: poetry install --no-interaction --no-root
+
+      - name: Install library
+        run: poetry install --no-interaction
+
+      # Requires installation of pytest and pytest-cov
+      - name: Test with pytest
+        run: poetry run pytest --doctest-modules --cov=${{ inputs.module-name }} --cov-report=xml

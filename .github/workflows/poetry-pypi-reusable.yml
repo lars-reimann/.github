@@ -1,23 +1,23 @@
-name: Test Poetry Project and Upload Coverage to Codecov (Reusable)
+name: Publish Poetry Project to PyPI (reusable)
 
 on:
   workflow_call:
     inputs:
-        working-directory:
-            description: 'Working directory to use'
-            required: true
-            type: string
-        python-version:
-            description: 'Python version to use'
-            required: true
-            type: string
-        module-name:
-            description: 'Name of the module to build'
-            required: true
-            type: string
+      working-directory:
+        description: 'Working directory to use'
+        required: true
+        type: string
+      python-version:
+        description: 'Python version to use'
+        required: true
+        type: string
+    secrets:
+      PYPI_TOKEN:
+        description: 'PyPI token'
+        required: true
 
 jobs:
-  build:
+  publish-stdlib:
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -52,13 +52,10 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
 
-      # Requires installation of pytest and pytest-cov
       - name: Test with pytest
-        run: poetry run pytest --doctest-modules --cov=${{ inputs.module-name }} --cov-report=xml
+        run: poetry run pytest --doctest-modules
 
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          directory: ${{ inputs.working-directory }}
-          files: coverage.xml
+      - name: Publish
+        run: poetry publish --build
+        env:
+          POETRY_PYPI_TOKEN_PYPI: ${{ secrets.PYPI_TOKEN }}

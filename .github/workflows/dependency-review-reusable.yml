@@ -1,0 +1,21 @@
+name: Review Dependencies (Reusable)
+
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+    concurrency:
+      group: ${{ github.head_ref }}__review-dependencies-reusable__review
+      cancel-in-progress: true
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Review dependencies
+        uses: actions/dependency-review-action@v3

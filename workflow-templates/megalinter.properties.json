@@ -1,5 +1,5 @@
 {
-    "name": "Run MegaLinter",
+    "name": "MegaLinter",
     "description": "Run MegaLinter on a Pull Request.",
     "iconName": "GitHub-Mark"
 }

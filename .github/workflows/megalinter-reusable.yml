@@ -21,7 +21,7 @@ jobs:
 
     steps:
       # Git Checkout
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v3
         with:
           token: ${{ secrets.PAT || secrets.GITHUB_TOKEN }}

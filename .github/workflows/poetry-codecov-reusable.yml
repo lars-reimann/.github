@@ -3,18 +3,27 @@ name: Test Poetry Project and Upload Coverage to Codecov (Reusable)
 on:
   workflow_call:
     inputs:
-        working-directory:
-            description: 'Working directory to use'
-            required: true
-            type: string
-        python-version:
-            description: 'Python version to use'
-            required: true
-            type: string
-        module-name:
-            description: 'Name of the module to build'
-            required: true
-            type: string
+      working-directory:
+        description: 'Working directory to use'
+        required: true
+        type: string
+      python-version:
+        description: 'Python version to use'
+        required: true
+        type: string
+      module-name:
+        description: 'Name of the module to build'
+        required: true
+        type: string
+      coverage:
+        description: 'Whether to upload coverage to Codecov'
+        required: false
+        type: boolean
+        default: true
+    secrets:
+      CODECOV_TOKEN:
+        description: 'Codecov token'
+        required: true
 
 jobs:
   build:
@@ -50,12 +59,18 @@ jobs:
       - name: Install library
         run: poetry install --no-interaction
 
-      # Requires installation of pytest and pytest-cov
       - name: Test with pytest
+        if: ${{ !inputs.coverage }}
+        run: poetry run pytest --doctest-modules
+
+      # Requires installation of pytest and pytest-cov
+      - name: Test with pytest and compute coverage
+        if: ${{ inputs.coverage }}
         run: poetry run pytest --doctest-modules --cov=${{ inputs.module-name }} --cov-report=xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v3
+        if: ${{ inputs.coverage }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: ${{ inputs.working-directory }}

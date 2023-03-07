@@ -17,7 +17,7 @@ on:
         required: true
 
 jobs:
-  publish-stdlib:
+  publish:
     runs-on: ubuntu-latest
     defaults:
       run:

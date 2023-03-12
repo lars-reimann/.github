@@ -12,8 +12,8 @@ on:
         required: true
         type: string
       module-name:
-        description: 'Name of the module to build'
-        required: true
+        description: 'Name of the module to build. Must be provided if coverage is enabled.'
+        required: false
         type: string
       coverage:
         description: 'Whether to upload coverage to Codecov'

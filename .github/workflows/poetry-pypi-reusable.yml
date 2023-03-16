@@ -36,17 +36,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install Poetry
+        run: pipx install poetry
+
       - name: Set up Python ${{ inputs.python-version }}
         uses: actions/setup-python@v4
         with:
           python-version: ${{ inputs.python-version }}
-
-      - name: Install Poetry
-        uses: snok/install-poetry@v1.3.3
-        with:
-          virtualenvs-create: true
-          virtualenvs-in-project: true
-          installer-parallel: true
+          cache: 'poetry'
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
@@ -55,7 +52,7 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
-      - name: Install dependencies
+      - name: Install NPM dependencies
         run: npm ci
 
       - name: Release

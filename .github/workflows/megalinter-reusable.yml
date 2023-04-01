@@ -55,4 +55,6 @@ jobs:
         with:
           branch: ${{ github.event.pull_request.head.ref || github.head_ref || github.ref }}
           commit_message: 'style: apply automated linter fixes'
-          commit_author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          commit_user_name: megalinter-bot
+          commit_user_email: 129584137+megalinter-bot@users.noreply.github.com
+          commit_author: megalinter-bot <129584137+megalinter-bot@users.noreply.github.com>

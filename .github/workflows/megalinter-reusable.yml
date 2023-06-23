@@ -4,7 +4,7 @@ on:
   workflow_call:
     secrets:
       PAT:
-        required: true
+        required: false
 
 env:
   APPLY_FIXES: all

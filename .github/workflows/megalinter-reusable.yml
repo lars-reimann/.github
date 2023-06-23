@@ -4,7 +4,7 @@ on:
   workflow_call:
     secrets:
       PAT:
-        required: false
+        required: true
 
 env:
   APPLY_FIXES: all
@@ -33,7 +33,6 @@ jobs:
         uses: oxsecurity/megalinter/flavors/cupcake@v7.1.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          PAT: ${{ secrets.PAT }}
 
       # Upload MegaLinter artifacts
       - name: Archive production artifacts

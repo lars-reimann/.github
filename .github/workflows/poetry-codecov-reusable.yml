@@ -57,7 +57,7 @@ jobs:
         run: poetry run pytest --doctest-modules --cov=${{ inputs.module-name }} --cov-report=xml
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v4
         if: ${{ inputs.coverage }}
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

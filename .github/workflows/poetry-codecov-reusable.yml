@@ -11,6 +11,11 @@ on:
         description: 'Python version to use'
         required: true
         type: string
+      platform:
+        description: 'The platform to run on'
+        required: false
+        type: string
+        default: ubuntu-latest
       module-name:
         description: 'Name of the module to build. Must be provided if coverage is enabled.'
         required: false
@@ -27,7 +32,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ${{ inputs.platform }}
     defaults:
       run:
         working-directory: ${{ inputs.working-directory }}
